@@ -1,48 +1,53 @@
 <!DOCTYPE html>
 <html lang="mn">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Миний танилцуулга</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet" />
 </head>
 <body>
+  <div class="theme-toggle">
+    🌙 <input type="checkbox" id="themeSwitch" /> ☀️
+  </div>
+
   <header>
+    <img src="pro.jpg" alt="Миний зураг" class="profile-pic" />
     <h1>Сайн байна уу!</h1>
-    <p>Намайг [Таны нэр] гэдэг</p>
+    <p>Намайг <strong>Таны нэр</strong> гэдэг</p>
   </header>
 
   <section class="about">
-    <h2>Миний тухай</h2>
-    <p>Би бол ... (өөрийн тухай товч мэдээлэл бичнэ)</p>
+    <h2>💡 Миний тухай</h2>
+    <p>Би бол мэдээллийн технологийн оюутан бөгөөд вэб хөгжүүлэлтэд дуртай.</p>
   </section>
 
   <section class="skills">
-    <h2>Ур чадварууд</h2>
+    <h2>🛠️ Ур чадварууд</h2>
     <ul>
-      <li>HTML, CSS</li>
-      <li>JavaScript</li>
-      <li>Python / PHP</li>
-      <li>MySQL</li>
-    </ul>
-  </section>
-
-  <section class="education">
-    <h2>Боловсрол</h2>
-    <ul>
-      <li>Сургуулийн нэр – он</li>
-      <li>Мэргэжил – он</li>
+      <li>🌐 HTML, CSS, JavaScript</li>
+      <li>🧠 Python, PHP</li>
+      <li>🗄️ MySQL, MongoDB</li>
     </ul>
   </section>
 
   <section class="contact">
-    <h2>Холбоо барих</h2>
+    <h2>📞 Холбоо барих</h2>
     <p>Email: example@gmail.com</p>
-    <p>Утас: 99112233</p>
+    <div class="socials">
+      <a href="#"><img src="icons/github.svg" alt="GitHub" /></a>
+      <a href="#"><img src="icons/linkedin.svg" alt="LinkedIn" /></a>
+      <a href="#"><img src="https://www.facebook.com/share/1AUiKwvMcZ/"><!-- Facebook, Instagram icon here --></a>
+    </div>
   </section>
 
   <footer>
-    <p>&copy; 2025 Миний Вэбсайт. Бүх эрх хуулиар хамгаалагдсан.</p>
+    <p>© 2025 Миний вэбсайт — Бүх эрх хуулиар хамгаалагдсан.</p>
   </footer>
 </body>
 </html>
+ы
