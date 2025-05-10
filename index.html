@@ -11,43 +11,35 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet" />
 </head>
 <body>
+  <!-- Theme Toggle -->
   <div class="theme-toggle">
     🌙 <input type="checkbox" id="themeSwitch" /> ☀️
   </div>
 
-  <header>
-    <img src="pro.jpg" alt="Миний зураг" class="profile-pic" />
-    <h1>Сайн байна уу!</h1>
-    <p>Намайг <strong>Таны нэр</strong> гэдэг</p>
-  </header>
-
-  <section class="about">
-    <h2>💡 Миний тухай</h2>
-    <p>Би бол мэдээллийн технологийн оюутан бөгөөд вэб хөгжүүлэлтэд дуртай.</p>
-  </section>
-
-  <section class="skills">
-    <h2>🛠️ Ур чадварууд</h2>
+  <!-- Navigation -->
+  <nav>
     <ul>
-      <li>🌐 HTML, CSS, JavaScript</li>
-      <li>🧠 Python, PHP</li>
-      <li>🗄️ MySQL, MongoDB</li>
+      <li><a href="#" data-page="home">Нүүр</a></li>
+      <li><a href="#" data-page="about">Миний тухай</a></li>
+      <li><a href="#" data-page="skills">Ур чадварууд</a></li>
+      <li><a href="#" data-page="projects">Бүтээлүүд</a></li>
+      <li><a href="#" data-page="contact">Холбоо барих</a></li>
     </ul>
-  </section>
+  </nav>
 
-  <section class="contact">
-    <h2>📞 Холбоо барих</h2>
-    <p>Email: example@gmail.com</p>
-    <div class="socials">
-      <a href="#"><img src="icons/github.svg" alt="GitHub" /></a>
-      <a href="#"><img src="icons/linkedin.svg" alt="LinkedIn" /></a>
-      <a href="#"><img src="https://www.facebook.com/share/1AUiKwvMcZ/"><!-- Facebook, Instagram icon here --></a>
-    </div>
-  </section>
+  <!-- Ачаалагдах хэсэг -->
+  <main id="content"></main>
 
   <footer>
     <p>© 2025 Миний вэбсайт — Бүх эрх хуулиар хамгаалагдсан.</p>
   </footer>
+    <!-- Dark mode toggle JavaScript -->
+    <script>
+        const themeSwitch = document.getElementById('themeSwitch');
+    
+        themeSwitch.addEventListener('change', function () {
+          document.body.classList.toggle('dark', themeSwitch.checked);
+        });
+      </script>
 </body>
 </html>
-ы
