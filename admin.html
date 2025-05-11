@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+</head>
+<body>
+    <h2>Админ Нэвтрэх</h2>
+    <form id="loginForm" onsubmit="return login()">
+        <label for="username">Нэвтрэх нэр:</label>
+        <input type="text" id="username" name="username" required>
+        <br>
+        <label for="password">Нууц үг:</label>
+        <input type="password" id="password" name="password" required>
+        <br>
+        <button type="submit">Нэвтрэх</button>
+    </form>
+
+    <div id="adminContent" style="display:none;">
+        <!-- Админы хуудасны агуулга энд байна -->
+        <p>Таны админ хуудас энд байна.</p>
+    </div>
+
+    <script>
+        function login() {
+            // Простой логин логик
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (username === 'admin' && password === 'password') {
+                document.getElementById('loginForm').style.display = 'none';
+                document.getElementById('adminContent').style.display = 'block';
+                return false; // prevent form submission
+            } else {
+                alert('Нэвтрэх нэр эсвэл нууц үг буруу байна!');
+                return false; // prevent form submission
+            }
+        }
+    </script>
+</body>
+</html>

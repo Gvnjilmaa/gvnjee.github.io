@@ -263,11 +263,40 @@ body {
     transform: translateY(-3px);
   }
   
+  .admin {
+    padding: 40px;
+    text-align: center;
+  }
+  
+  .admin h2 {
+    font-size: 28px;
+    color: #333;
+  }
+  
+  .admin ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .admin li {
+    margin: 10px 0;
+  }
+  
+  .admin a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .admin a:hover {
+    text-decoration: underline;
+  }
+  
   /* Active link */
   nav a.active {
     border-bottom: 2px solid #00bcd4;
   }
-  
+
   /* Fade-in animation */
   @keyframes fadeInUp {
     0% {
