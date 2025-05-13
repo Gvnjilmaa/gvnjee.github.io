@@ -1,42 +1,124 @@
 <!DOCTYPE html>
 <html lang="mn">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Login</title>
+  <meta charset="UTF-8">
+  <title>Админ удирдлага</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    nav ul {
+      list-style: none;
+      padding: 0;
+    }
+    nav li {
+      padding: 8px;
+      background: #eee;
+      margin: 5px 0;
+      cursor: pointer;
+    }
+    .admin-controls, #editSection {
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
-    <h2>Админ Нэвтрэх</h2>
-    <form id="loginForm" onsubmit="return login()">
-        <label for="username">Нэвтрэх нэр:</label>
-        <input type="text" id="username" name="username" required>
-        <br>
-        <label for="password">Нууц үг:</label>
-        <input type="password" id="password" name="password" required>
-        <br>
-        <button type="submit">Нэвтрэх</button>
-    </form>
 
-    <div id="adminContent" style="display:none;">
-        <!-- Админы хуудасны агуулга энд байна -->
-        <p>Таны админ хуудас энд байна.</p>
+  <!-- 🔐 Админ нэвтрэх хэсэг -->
+  <section id="admin-login-section">
+    <h2>🔐 Админ хэсэг</h2>
+    <form id="adminLoginForm">
+      <input type="text" id="adminUsername" placeholder="Нэвтрэх нэр" required />
+      <input type="password" id="adminPassword" placeholder="Нууц үг" required />
+      <button type="submit">Нэвтрэх</button>
+    </form>
+    <p id="loginError" style="color: red; display: none;">Нэвтрэх нэр эсвэл нууц үг буруу байна.</p>
+  </section>
+
+  <!-- 🎛️ Админ удирдлагын хэсэг -->
+  <section id="admin-control-section" style="display: none;">
+    <h3>🎛️ Админ удирдлагын хэсэг</h3>
+    <p>Та амжилттай нэвтэрлээ.</p>
+    <button onclick="logoutAdmin()">Гарах</button>
+
+    <nav>
+      <ul id="menuList">
+        <li onclick="showEdit(this)" ondblclick="deleteMenu(this)">Нүүр</li>
+        <li onclick="showEdit(this)" ondblclick="deleteMenu(this)">Ур чадвар</li>
+        <li onclick="showEdit(this)" ondblclick="deleteMenu(this)">Холбоо барих</li>
+      </ul>
+    </nav>
+
+    <div class="admin-controls">
+      <input type="text" id="menuInput" placeholder="Шинэ цэсний нэр">
+      <button onclick="addMenu()">Нэмэх</button>
     </div>
 
-    <script>
-        function login() {
-            // Простой логин логик
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
+    <div id="editSection" style="display: none;">
+      <input type="text" id="editInput">
+      <button onclick="saveEdit()">Хадгалах</button>
+    </div>
+  </section>
 
-            if (username === 'admin' && password === 'password') {
-                document.getElementById('loginForm').style.display = 'none';
-                document.getElementById('adminContent').style.display = 'block';
-                return false; // prevent form submission
-            } else {
-                alert('Нэвтрэх нэр эсвэл нууц үг буруу байна!');
-                return false; // prevent form submission
-            }
-        }
-    </script>
+  <script>
+    // Админ нэвтрэх логик
+    document.getElementById("adminLoginForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const username = document.getElementById("adminUsername").value;
+      const password = document.getElementById("adminPassword").value;
+
+      if (username === "admin" && password === "1234") {
+        document.getElementById("admin-login-section").style.display = "none";
+        document.getElementById("admin-control-section").style.display = "block";
+        document.getElementById("loginError").style.display = "none";
+      } else {
+        document.getElementById("loginError").style.display = "block";
+      }
+    });
+
+    function logoutAdmin() {
+      document.getElementById("admin-control-section").style.display = "none";
+      document.getElementById("admin-login-section").style.display = "block";
+    }
+
+    // Цэс нэмэх
+    function addMenu() {
+      const menuText = document.getElementById("menuInput").value.trim();
+      if (!menuText) return;
+
+      const li = document.createElement("li");
+      li.textContent = menuText;
+      li.onclick = () => showEdit(li);
+      li.ondblclick = () => deleteMenu(li);
+
+      document.getElementById("menuList").appendChild(li);
+      document.getElementById("menuInput").value = "";
+    }
+
+    // Цэс засах
+    function showEdit(li) {
+      document.getElementById("editSection").style.display = "block";
+      document.getElementById("editInput").value = li.textContent;
+      document.getElementById("editInput").dataset.targetId = li.dataset.id = Date.now(); // unique ID
+      window._editingLi = li;
+    }
+
+    function saveEdit() {
+      const input = document.getElementById("editInput");
+      if (window._editingLi && input.value.trim()) {
+        window._editingLi.textContent = input.value.trim();
+        window._editingLi.onclick = () => showEdit(window._editingLi);
+        window._editingLi.ondblclick = () => deleteMenu(window._editingLi);
+        document.getElementById("editSection").style.display = "none";
+        input.value = "";
+      }
+    }
+
+    // Цэс устгах
+    function deleteMenu(li) {
+      if (confirm("Та энэ цэсийг устгахдаа итгэлтэй байна уу?")) {
+        li.remove();
+      }
+    }
+  </script>
+
 </body>
 </html>

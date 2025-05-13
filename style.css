@@ -296,6 +296,98 @@ body {
   nav a.active {
     border-bottom: 2px solid #00bcd4;
   }
+/* Skills section */
+.skills {
+  padding: 60px 20px;
+  background-color: #f9f9f9;
+  color: #333;
+  text-align: left;
+  max-width: 900px;
+  margin: 0 auto;
+  animation: fadeInUp 1s ease forwards;
+}
+
+body.dark .skills {
+  background-color: #1e1e1e;
+  color: #f5f5f5;
+}
+
+.skills h2, .skills h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #00bcd4;
+}
+
+.skills ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.skills li {
+  background: #e0f7fa;
+  margin-bottom: 10px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+}
+
+.skills li:hover {
+  transform: translateX(10px);
+}
+
+body.dark .skills li {
+  background: #2a2a2a;
+  color: #f5f5f5;
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.05);
+}
+/* Skills section */
+.skills {
+  padding: 60px 20px;
+  background-color: #f9f9f9;
+  color: #333;
+  text-align: left;
+  max-width: 900px;
+  margin: 0 auto;
+  animation: fadeInUp 1s ease forwards;
+}
+
+body.dark .skills {
+  background-color: #1e1e1e;
+  color: #f5f5f5;
+}
+
+.skills h2, .skills h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #00bcd4;
+}
+
+.skills ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.skills li {
+  background: #e0f7fa;
+  margin-bottom: 10px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+}
+
+.skills li:hover {
+  transform: translateX(10px);
+}
+
+body.dark .skills li {
+  background: #2a2a2a;
+  color: #f5f5f5;
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.05);
+}
 
   /* Fade-in animation */
   @keyframes fadeInUp {
