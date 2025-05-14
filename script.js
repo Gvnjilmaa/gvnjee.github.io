@@ -1,67 +1,69 @@
-// 🌓 Theme Switcher
-const switcher = document.getElementById('themeSwitch');
-if (switcher) {
-  switcher.addEventListener('change', function () {
-    document.body.classList.toggle('dark', this.checked);
-  });
-}
+document.addEventListener("DOMContentLoaded", function () {
+  // Theme toggle
+  const switcher = document.getElementById("switcher");
+  if (switcher) {
+    switcher.addEventListener("change", () => {
+      document.body.classList.toggle("dark-theme", switcher.checked);
+    });
+  }
 
-// SPA: Хуудас ачаалалт
-document.addEventListener('DOMContentLoaded', () => {
+  // Set up navigation links
   setupLinks();
-  loadPage('home');
 });
 
 function setupLinks() {
-  document.querySelectorAll('nav a').forEach(link => {
-    link.addEventListener('click', (e) => {
+  const links = document.querySelectorAll("nav a");
+  links.forEach(link => {
+    link.addEventListener("click", e => {
       e.preventDefault();
-      const page = link.getAttribute('data-page');
+      const page = link.getAttribute("href");
       loadPage(page);
     });
   });
 }
 
 function loadPage(page) {
-    const file = `${page}.html`;
-    fetch(file)
-      .then(res => res.text())
-      .then(data => {
-        document.getElementById('content').innerHTML = data;
-  
-        // Админ хуудас ачаалагдвал логин функц ажиллуулна
-        if (page === "admin") {
-          initAdminLogin();
-        }
-      })
-      .catch(err => {
-        document.getElementById('content').innerHTML = "<p>Хуудас ачаалагдахад алдаа гарлаа.</p>";
-      });
-  }  
+  fetch(page)
+    .then(response => {
+      if (!response.ok) throw new Error("Page not found");
+      return response.text();
+    })
+    .then(data => {
+      document.getElementById("content").innerHTML = data;
+      if (page === "admin.html") initAdminLogin();
+    })
+    .catch(error => {
+      document.getElementById("content").innerHTML = "<p>Хуудас ачаалагдсангүй.</p>";
+      console.error("Load error:", error);
+    });
+}
 
-// 🛡️ Админ нэвтрэх логик
 function initAdminLogin() {
-  const loginForm = document.getElementById('adminLoginForm');
-  if (!loginForm) return; // Хэрэв форм байхгүй бол гарах
+  const loginForm = document.getElementById("adminLoginForm");
+  const dashboard = document.getElementById("adminDashboard");
 
-  loginForm.addEventListener('submit', function(e) {
+  if (!loginForm || !dashboard) return;
+
+  loginForm.addEventListener("submit", function (e) {
     e.preventDefault();
+    const username = document.getElementById("adminUsername").value.trim();
+    const password = document.getElementById("adminPassword").value.trim();
 
-    const username = document.getElementById('adminUsername').value;
-    const password = document.getElementById('adminPassword').value;
-
-    if (username === "admin" && password === "1234") {
-      document.getElementById('admin-login-section').style.display = 'none';
-      document.getElementById('admin-control-section').style.display = 'block';
-      document.getElementById('loginError').style.display = 'none';
+    if (username === "admin" && password === "password") {
+      loginForm.style.display = "none";
+      dashboard.style.display = "block";
     } else {
-      document.getElementById('loginError').style.display = 'block';
+      alert("Нэвтрэх нэр эсвэл нууц үг буруу байна.");
     }
   });
 }
 
 function logoutAdmin() {
-  document.getElementById('admin-login-section').style.display = 'block';
-  document.getElementById('admin-control-section').style.display = 'none';
-  document.getElementById('adminLoginForm').reset();
+  const loginForm = document.getElementById("adminLoginForm");
+  const dashboard = document.getElementById("adminDashboard");
+
+  if (loginForm && dashboard) {
+    loginForm.style.display = "block";
+    dashboard.style.display = "none";
+  }
 }
